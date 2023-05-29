@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "_01_stack_heap",
+    "_02_concepts",
+    "_03_grammar",
+]
