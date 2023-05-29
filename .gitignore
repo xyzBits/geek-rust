@@ -1,2 +1,5 @@
 /target/
 /.idea/
+/_03_grammar/scrape_url/target/
+/_03_grammar/scrape_url/rust.md
+/rust.md
