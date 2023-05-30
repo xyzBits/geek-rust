@@ -3,11 +3,11 @@
 version = 3
 
 [[package]]
-name = "_01_stack_heap"
+name = "_01_stack_heap_"
 version = "0.1.0"
 
 [[package]]
-name = "_02_concepts"
+name = "_02_concepts_"
 version = "0.1.0"
 
 [[package]]
