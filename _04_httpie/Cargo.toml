@@ -3,11 +3,14 @@ name = "_04_httpie"
 version = "0.1.0"
 edition = "2021"
 
+[[example]]
+name = "cli"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 anyhow = "1" #错误处理
-clap = { version = "3", features = ["derive"] } # 命令行解析
+clap = { version = "3.1.0", features = ["derive"] } # 命令行解析
 colored = "2" # 命令行终端多彩显示
 jsonxf = "1.1" # JSON pretty print 格式 化
 mime = "0.3" # 处理mime类型
