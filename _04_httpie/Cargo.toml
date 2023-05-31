@@ -6,6 +6,15 @@ edition = "2021"
 [[example]]
 name = "cli"
 
+[[example]]
+name = "cli_get"
+
+[[example]]
+name = "cli_verify"
+
+[[example]]
+name = "cli_from_str"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -17,3 +26,4 @@ mime = "0.3" # 处理mime类型
 reqwest = { version = "0.10", features = ["blocking", "json"] }
 tokio = { version = "0.2", features = ["macros", "tcp", "dns", "io-util"] }
 serde = "0.5.0"
+syntect = "4"
