@@ -3,6 +3,12 @@ name = "_03_grammar_scrape_url"
 version = "0.1.0"
 edition = "2021"
 
+
+[[example]]
+name = "use_args"
+
+[[example]]
+name = "handle_errors"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

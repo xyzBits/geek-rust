@@ -115,6 +115,10 @@ async fn main() -> Result<()> {
 }
 
 //仅在 cargo test 时才编译
+// rust的单元测试一般放在和被测试代码相同的文件中，使用条件编译 #[cfg(test)]来确保测试代码
+// 只在测试环境下编译
+// 集成测试一般放在 test 目录下，和src平行，和单元测试不同，集成测试只能测试crate下的公开接口
+// 编译时编译成的单独的可执行文件
 #[cfg(test)]
 mod tests {
     use super::*;
