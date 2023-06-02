@@ -7,6 +7,7 @@ members = [
     "_03_grammar_scrape_url",
     "_04_httpie",
     "_05_thumbor",
+    "_07_ownership",
 ]
 
 #exclude = [

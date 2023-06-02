@@ -3,10 +3,9 @@ use axum::{
     extract::{Extension, Path},
     handler::get,
     http::{HeaderMap, HeaderValue, StatusCode},
-    Router,
+    AddExtensionLayer, Router,
 };
 use bytes::Bytes;
-use image::ImageOutputFormat;
 use lru::LruCache;
 use percent_encoding::{percent_decode_str, percent_encode, NON_ALPHANUMERIC};
 use serde::Deserialize;
@@ -14,30 +13,20 @@ use std::{
     collections::hash_map::DefaultHasher,
     hash::{Hash, Hasher},
     sync::Arc,
-    time::Duration,
 };
 use tokio::sync::Mutex;
 use tower::ServiceBuilder;
-use tower_http::{
-    add_extension::AddExtensionLayer, compression::CompressionLayer, trace::TraceLayer,
-};
 use tracing::{info, instrument};
 
-mod engine;
 mod pb;
 
-use engine::Photon;
 use pb::*;
 
-use crate::engine::Engine;
-
-// 参数使用 serde 做 Deserialize，axum 会自动识别并解析
 #[derive(Deserialize)]
 struct Params {
     spec: String,
     url: String,
 }
-
 type Cache = Arc<Mutex<LruCache<u64, Bytes>>>;
 
 #[tokio::main]
@@ -51,31 +40,28 @@ async fn main() {
         .route("/image/:spec/:url", get(generate))
         .layer(
             ServiceBuilder::new()
-                .load_shed()
-                .concurrency_limit(1024)
-                .timeout(Duration::from_secs(10))
-                .layer(TraceLayer::new_for_http())
                 .layer(AddExtensionLayer::new(cache))
-                .layer(CompressionLayer::new())
                 .into_inner(),
         );
 
     // 运行 web 服务器
     let addr = "127.0.0.1:3000".parse().unwrap();
+
     print_test_url("https://images.pexels.com/photos/1562477/pexels-photo-1562477.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+
     info!("Listening on {}", addr);
+
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
 }
 
-// basic handler that responds with a static string
 async fn generate(
     Path(Params { spec, url }): Path<Params>,
     Extension(cache): Extension<Cache>,
 ) -> Result<(HeaderMap, Vec<u8>), StatusCode> {
-    let spec: ImageSpec = spec
+    let _spec: ImageSpec = spec
         .as_str()
         .try_into()
         .map_err(|_| StatusCode::BAD_REQUEST)?;
@@ -85,19 +71,12 @@ async fn generate(
         .await
         .map_err(|_| StatusCode::BAD_REQUEST)?;
 
-    // 使用 image engine 处理
-    let mut engine: Photon = data
-        .try_into()
-        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    engine.apply(&spec.specs);
-    // TODO: 这里目前类型写死了，应该使用 content negotiation
-    let image = engine.generate(ImageOutputFormat::Jpeg(85));
+    // TODO: 处理图片
 
-    info!("Finished processing: image size {}", image.len());
     let mut headers = HeaderMap::new();
 
     headers.insert("content-type", HeaderValue::from_static("image/jpeg"));
-    Ok((headers, image))
+    Ok((headers, data.to_vec()))
 }
 
 #[instrument(level = "info", skip(cache))]
