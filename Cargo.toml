@@ -1,5 +1,14 @@
 [workspace]
+# workspace 是一个用于管理多个rust项目的工具，它允许你将多个rust项目组织在同一个目录下，并在它们之间共享依赖关系和配置，
+# workspace 最常用于管理 rust 的crate ，这些crate 之间共享依赖关系
 
+
+
+# members 字段列出了workspace  中所有的crate，以便cargo 知道他们之间的关系
+# dependencies 字段允许你指定 workspace 中所有crate 共享的依赖
+
+# 在workspace 根目录下，你可以使用 cargo build cargo test ，等命令来构建和测试workspace 中所有的crate
+# cargo 会自动处理 依赖关系 ，确保每个crate都使用正确版本的依赖项
 members = [
     "_01_stack_heap",
     "_02_concepts",
@@ -8,7 +17,8 @@ members = [
     "_04_httpie",
     "_05_thumbor",
     "_07_ownership",
-    "_08_borrow"
+    "_08_borrow",
+    "too_many_web_servers"
 ]
 
 #exclude = [
