@@ -74,6 +74,14 @@ name = "_08_borrow"
 version = "0.1.0"
 
 [[package]]
+name = "_09_multi_owner"
+version = "0.1.0"
+
+[[package]]
+name = "_10_lifetime"
+version = "0.1.0"
+
+[[package]]
 name = "_13_traits"
 version = "0.1.0"
 

@@ -18,6 +18,8 @@ members = [
     "_05_thumbor",
     "_07_ownership",
     "_08_borrow",
+    "_09_multi_owner",
+    "_10_lifetime",
     "too_many_web_servers",
     "_012_type_system",
     "_13_traits"
