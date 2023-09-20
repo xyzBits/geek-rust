@@ -1,17 +1,19 @@
 fn main() {
-    let data = vec![10, 42, 9, 8];
-    let v = 42;
+    let data = vec![10, 42, 3, 22, 12, 9, 4];
+    let v = 34;
+    let index_option = find_pos(data, v);
 
-    if let Some(pos) = find_pos(data, v) {
-        println!("Found {} at {}", v, pos);
+    if  let Some(index) = index_option {
+        println!("{}", index);
+    } else {
+        println!("nothing");
     }
 }
 
-
 fn find_pos(data: Vec<u32>, v: u32) -> Option<usize> {
-    for (pos, item) in data.iter().enumerate() {
+    for (index, item) in data.iter().enumerate() {
         if *item == v {
-            return Some(pos);
+            return Some(index);
         }
     }
 

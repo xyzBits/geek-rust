@@ -23,6 +23,32 @@ path = "src/heap_reference_stack.rs"
 name = "heap_reference_stack_outlive"
 path = "src/heap_reference_stack_outlive.rs"
 
+
+[[bin]]
+name = "demo1"
+path = "src/demo1.rs"
+
+[[bin]]
+name = "demo2"
+path = "src/demo2.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "demo3"
+path = "src/demo3.rs"
+
+[[bin]]
+name = "demo4"
+path = "src/demo4.rs"
+
+[[bin]]
+name = "demo5"
+path = "src/demo5.rs"
+
+[[bin]]
+name = "demo6"
+path = "src/demo6.rs"
+
+
 
 [dependencies]

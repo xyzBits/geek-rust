@@ -3,6 +3,10 @@
 version = 3
 
 [[package]]
+name = "_012_type_system"
+version = "0.1.0"
+
+[[package]]
 name = "_01_stack_heap_"
 version = "0.1.0"
 
@@ -67,6 +71,10 @@ version = "0.1.0"
 
 [[package]]
 name = "_08_borrow"
+version = "0.1.0"
+
+[[package]]
+name = "_13_traits"
 version = "0.1.0"
 
 [[package]]

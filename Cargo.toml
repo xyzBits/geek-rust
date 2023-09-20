@@ -18,7 +18,9 @@ members = [
     "_05_thumbor",
     "_07_ownership",
     "_08_borrow",
-    "too_many_web_servers"
+    "too_many_web_servers",
+    "_012_type_system",
+    "_13_traits"
 ]
 
 #exclude = [
