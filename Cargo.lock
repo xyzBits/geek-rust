@@ -3,10 +3,6 @@
 version = 3
 
 [[package]]
-name = "_012_type_system"
-version = "0.1.0"
-
-[[package]]
 name = "_01_stack_heap_"
 version = "0.1.0"
 
@@ -79,6 +75,10 @@ version = "0.1.0"
 
 [[package]]
 name = "_10_lifetime"
+version = "0.1.0"
+
+[[package]]
+name = "_11_memory"
 version = "0.1.0"
 
 [[package]]
