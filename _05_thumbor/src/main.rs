@@ -1,3 +1,10 @@
+use std::{
+    collections::hash_map::DefaultHasher,
+    hash::{Hash, Hasher},
+    sync::Arc,
+    time::Duration,
+};
+
 use anyhow::Result;
 use axum::{
     extract::{Extension, Path},
@@ -8,14 +15,8 @@ use axum::{
 use bytes::Bytes;
 use image::ImageOutputFormat;
 use lru::LruCache;
-use percent_encoding::{percent_decode_str, percent_encode, NON_ALPHANUMERIC};
+use percent_encoding::{NON_ALPHANUMERIC, percent_decode_str, percent_encode};
 use serde::Deserialize;
-use std::{
-    collections::hash_map::DefaultHasher,
-    hash::{Hash, Hasher},
-    sync::Arc,
-    time::Duration,
-};
 use tokio::sync::Mutex;
 use tower::ServiceBuilder;
 use tower_http::{
@@ -23,13 +24,13 @@ use tower_http::{
 };
 use tracing::{info, instrument};
 
-mod engine;
-mod pb;
-
 use engine::Photon;
 use pb::*;
 
 use crate::engine::Engine;
+
+mod engine;
+mod pb;
 
 // 参数使用 serde 做 Deserialize，axum 会自动识别并解析
 #[derive(Deserialize)]

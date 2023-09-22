@@ -7,7 +7,6 @@ fn main() {
 
     let result = get_max(&s1);
     println!("bigger one: {}", result);
-
 }
 
 fn get_max(s1: &str) -> &str {

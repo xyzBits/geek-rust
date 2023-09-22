@@ -1,12 +1,13 @@
-use crate::pb::*;
 use anyhow::Result;
 use bytes::Bytes;
 use image::{DynamicImage, ImageBuffer, ImageOutputFormat};
 use lazy_static::lazy_static;
 use photon_rs::{
-    effects, filters, multiple, native::open_image_from_bytes, transform, PhotonImage,
+    effects, filters, multiple, native::open_image_from_bytes, PhotonImage, transform,
 };
 use tracing::instrument;
+
+use crate::pb::*;
 
 lazy_static! {
     // 预先把水印文件加载为静态变量
@@ -60,6 +61,7 @@ impl ImageTransform for Flipv {
         transform::flipv(image)
     }
 }
+
 impl ImageTransform for Fliph {
     fn transform(&self, image: &mut PhotonImage) {
         transform::fliph(image)

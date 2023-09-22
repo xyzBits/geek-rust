@@ -15,7 +15,6 @@ struct S2 {
 }
 
 fn main() {
-
     println!("size_of S1: {}, S2: {}", size_of::<S1>(), size_of::<S2>());
     println!("align_of S1: {}, S2: {}", align_of::<S1>(), align_of::<S2>())
 }

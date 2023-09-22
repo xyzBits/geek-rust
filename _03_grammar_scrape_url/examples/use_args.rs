@@ -14,8 +14,6 @@ fn main() {
     println!("{:?}", args);
 
     let args = std::env::args();
-    let v= args.collect();
+    let v = args.collect();
     println!("{:?}", v);
-
-
 }

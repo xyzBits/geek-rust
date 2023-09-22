@@ -1,4 +1,3 @@
-
 fn fib_loop(n: u8) {
     let (mut a, mut b, mut i) = (1, 1, 2u8);
     println!("\n fib_loop");
@@ -42,7 +41,6 @@ fn fib_for(n: u8) {
 }
 
 fn main() {
-
     let n = 10u8;
     fib_loop(n);
     fib_while(n);

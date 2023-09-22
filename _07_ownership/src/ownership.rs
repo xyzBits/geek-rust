@@ -3,7 +3,7 @@ fn main() {
     let v = 34;
     let index_option = find_pos(data, v);
 
-    if  let Some(index) = index_option {
+    if let Some(index) = index_option {
         println!("{}", index);
     } else {
         println!("nothing");

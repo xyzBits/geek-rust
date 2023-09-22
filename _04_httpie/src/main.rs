@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 use std::str::FromStr;
+
 use anyhow::{anyhow, Result};
-use clap::{Parser};
+use clap::Parser;
 use colored::Colorize;
 use mime::Mime;
 use reqwest::{Client, header, Response, Url};
-
 use syntect::{
     easy::HighlightLines,
     highlighting::{Style, ThemeSet},
@@ -205,6 +205,7 @@ async fn main() -> Result<()> {
 #[cfg(test)]
 mod tests {
     use std::collections::HashMap;
+
     use crate::{KvPair, parse_kv_pair, parse_url};
 
     #[test]

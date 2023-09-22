@@ -4,8 +4,7 @@ fn main() {
     let data1 = &data;
 
 
-
-    let  data2 = &data;
+    let data2 = &data;
     let data3 = &data;
     println!("{:p}", &data);
     println!("{:p}", data1);

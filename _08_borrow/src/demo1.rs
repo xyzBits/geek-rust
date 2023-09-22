@@ -13,7 +13,6 @@ fn main() {
         "addr of items: [{:p}, {:p}, {:p}, {:p}]",
         &data[0], &data[1], &data[2], &data[3]
     )
-
 }
 
 fn sum(data: &Vec<u32>) -> u32 {

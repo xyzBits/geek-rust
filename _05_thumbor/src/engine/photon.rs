@@ -1,12 +1,14 @@
-use super::{Engine, SpecTransform};
-use crate::pb::*;
 use anyhow::Result;
 use bytes::Bytes;
 use image::{DynamicImage, ImageBuffer, ImageOutputFormat};
 use lazy_static::lazy_static;
 use photon_rs::{
-    effects, filters, multiple, native::open_image_from_bytes, transform, PhotonImage,
+    effects, filters, multiple, native::open_image_from_bytes, PhotonImage, transform,
 };
+
+use crate::pb::*;
+
+use super::{Engine, SpecTransform};
 
 lazy_static! {
     // 预先把水印文件加载为静态变量

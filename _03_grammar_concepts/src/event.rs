@@ -53,7 +53,7 @@ fn process_event_if_let(event: &Event) {
 struct Topic {
     id: TopicId,
     name: String,
-    owner: UserId
+    owner: UserId,
 }
 
 fn main() {

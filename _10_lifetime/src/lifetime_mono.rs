@@ -1,4 +1,3 @@
-
 trait Print {
     fn print(self);
 }
@@ -18,5 +17,4 @@ impl Print for &'static str {
 fn main() {
     let s = "hello, world";
     s.print();
-
 }

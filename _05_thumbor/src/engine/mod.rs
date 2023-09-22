@@ -1,8 +1,10 @@
-use crate::pb::Spec;
 use image::ImageOutputFormat;
 
-mod photon;
 pub use photon::Photon;
+
+use crate::pb::Spec;
+
+mod photon;
 
 // Engine trait：未来可以添加更多的 engine，主流程只需要替换 engine
 pub trait Engine {

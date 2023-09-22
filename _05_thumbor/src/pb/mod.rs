@@ -2,8 +2,10 @@ use base64::{decode_config, encode_config, URL_SAFE_NO_PAD};
 use photon_rs::transform::SamplingFilter;
 use prost::Message;
 
-mod abi; // 声明 abi.rs
+// 声明 abi.rs
 pub use abi::*;
+
+mod abi;
 
 impl ImageSpec {
     pub fn new(specs: Vec<Spec>) -> Self {
@@ -96,8 +98,9 @@ impl Spec {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::borrow::Borrow;
+
+    use super::*;
 
     #[test]
     fn encoded_spec_could_be_decoded() {

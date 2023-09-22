@@ -1,5 +1,3 @@
-use std::os::unix::thread::RawPthread;
-
 fn main() {
     // let r = local_ref();
     // println!("r: {:p}", r);

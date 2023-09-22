@@ -1,7 +1,8 @@
 use std::collections::HashMap;
 use std::str::FromStr;
+
 use anyhow::{anyhow, Result};
-use clap::{Parser};
+use clap::Parser;
 use reqwest::{Client, Url};
 
 #[derive(Debug, Parser)]
@@ -133,7 +134,7 @@ mod tests {
     fn test_hash_map_works() {
         let mut map = HashMap::new();
 
-        let mut  key = String::from("hello");
+        let mut key = String::from("hello");
         let value = key.len();
         map.insert(&key, value);
         println!("{:?}", map);

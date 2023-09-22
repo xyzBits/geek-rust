@@ -2,9 +2,7 @@ fn main() {
     types_impl_copy_trait();
 }
 
-fn is_copy<T: Copy>() {
-
-}
+fn is_copy<T: Copy>() {}
 
 fn types_impl_copy_trait() {
     is_copy::<bool>();
@@ -32,7 +30,6 @@ fn types_impl_copy_trait() {
     // 数组，元组，如果其内部类型是 copy ，那么它们也是 copy
     is_copy::<[u8; 4]>();
     is_copy::<(&str, &str)>();
-
 }
 
 fn types_not_impl_copy_trait() {

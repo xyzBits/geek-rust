@@ -1,5 +1,4 @@
 fn main() {
-
     let url = "https://www.rust-lang.org/";
     let output = "rust.md";
 

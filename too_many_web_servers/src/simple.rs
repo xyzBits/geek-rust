@@ -22,7 +22,7 @@ fn main() {
 fn handle_connection(mut connection: TcpStream) -> io::Result<()> {
     // ....
     // 初始化数组，并给初值为0
-    let mut request:[u8; 1024] = [0; 1024];
+    let mut request: [u8; 1024] = [0; 1024];
     let mut read = 0;
 
     loop {
@@ -44,7 +44,7 @@ fn handle_connection(mut connection: TcpStream) -> io::Result<()> {
         read += num_bytes;
 
         // have we reached the end of the request?
-        if request.get(read - 4..read) == Some(b"\r\n\r\n"){
+        if request.get(read - 4..read) == Some(b"\r\n\r\n") {
             break;
         }
     }

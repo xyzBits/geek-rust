@@ -88,6 +88,9 @@ version = "0.1.0"
 [[package]]
 name = "_13_traits"
 version = "0.1.0"
+dependencies = [
+ "regex",
+]
 
 [[package]]
 name = "ab_glyph_rasterizer"

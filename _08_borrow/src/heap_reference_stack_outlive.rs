@@ -6,6 +6,7 @@ fn main() {
 
     println!("{:?}", data);
 }
+
 fn push_local_ref(data: &mut Vec<&u32>) {
     let v = 42;
     // data.push(&v);

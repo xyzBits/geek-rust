@@ -2,8 +2,6 @@ fn main() {
     println!("Hello, world!");
 
     let mut data = vec![1, 2, 3, 4];
-
-
 }
 
 

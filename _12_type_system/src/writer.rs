@@ -6,7 +6,7 @@ struct MyWriter<W> {
     writer: W,
 }
 
-impl <W: Write> MyWriter<W> {
+impl<W: Write> MyWriter<W> {
     pub fn new(writer: W) -> Self {
         Self {
             writer,

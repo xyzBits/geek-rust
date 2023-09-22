@@ -27,7 +27,6 @@ fn test1() {
     println!("first ref = {:p}", &first);// 在push 的时候，重新分配了内存，如果last 继续保留，会读到已经释放的内存
 
 
-
     // println!("{:?}", last);
 
     println!("{:?}", arr);
@@ -56,6 +55,6 @@ fn extend_vec(v: &mut Vec<i32>) {
 }
 
 fn print_vec<T>(name: &str, data: Vec<T>) {
-    let p: [usize; 3] = unsafe {mem::transmute(data)};
+    let p: [usize; 3] = unsafe { mem::transmute(data) };
     print!("{}: 0x {:x}, {}, {}", name, p[0], p[1], p[2]);
 }

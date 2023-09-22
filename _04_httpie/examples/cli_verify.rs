@@ -1,7 +1,8 @@
+use std::str::FromStr;
+
 use anyhow::{anyhow, Result};
 use clap::Parser;
 use reqwest::Url;
-use std::str::FromStr;
 
 // 定义 httpie 的 CLI 的主入口，它包含若干个子命令
 // 下面 /// 的注释是文档，clap 会将其作为 CLI 的帮助
@@ -42,7 +43,7 @@ struct Post {
     #[clap(parse(try_from_str = parse_url))]
     url: String,
     /// HTTP 请求的 body
-    #[clap(parse(try_from_str=parse_kv_pair))]
+    #[clap(parse(try_from_str = parse_kv_pair))]
     body: Vec<KvPair>,
 }
 
@@ -76,6 +77,7 @@ impl FromStr for KvPair {
 fn parse_kv_pair(s: &str) -> Result<KvPair> {
     s.parse()
 }
+
 fn parse_url(s: &str) -> Result<String> {
     // 这里我们仅仅检查一下 URL 是否合法
     let _url: Url = s.parse()?;

@@ -18,7 +18,6 @@ impl Node {
 
     pub fn update_downstream(&mut self, downstream: Rc<RefCell<Node>>) {
         self.downstream = Some(downstream);
-
     }
 
     pub fn get_downstream(&self) -> Option<Rc<RefCell<Node>>> {
@@ -30,7 +29,7 @@ fn main() {
     let mut node1 = Node::new(1);
     let mut node2 = Node::new(2);
     let mut node3 = Node::new(3);
-    let  node4 = Node::new(4);
+    let node4 = Node::new(4);
 
     node3.update_downstream(Rc::new(RefCell::new(node4)));
 
