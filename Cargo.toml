@@ -24,6 +24,7 @@ members = [
     "_12_type_system",
     "_13_traits",
     "_14_sys_traits",
+    "_15_smart_pointers",
     "too_many_web_servers",
 ]
 
