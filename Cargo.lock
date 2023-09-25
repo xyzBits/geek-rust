@@ -101,6 +101,14 @@ name = "_15_smart_pointers"
 version = "0.1.0"
 
 [[package]]
+name = "_16_data_structure"
+version = "0.1.0"
+
+[[package]]
+name = "_17_hash_table"
+version = "0.1.0"
+
+[[package]]
 name = "ab_glyph_rasterizer"
 version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
