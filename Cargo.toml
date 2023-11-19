@@ -27,7 +27,12 @@ members = [
     "_15_smart_pointers",
     "_16_data_structure",
     "_17_hash_table",
+    "_19_closure",
+    "_20_protobuf",
+    "_21_kv_server",
     "too_many_web_servers",
+
+    "_50_prost",
 ]
 
 #exclude = [

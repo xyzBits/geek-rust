@@ -1,0 +1,32 @@
+// 这是注释
+
+// 指定协议版本，必须写在非注释的第一行
+syntax = "proto3";
+
+// 指定该文件的包名
+package voting;
+
+// 定义服务的方法，编译为客户端和服务端代码后
+// 这里定义的方法名将同时存在于客户端和服务端
+service Voting {
+  rpc Vote(VotingRequest) returns (VotingResponse);
+}
+
+// 写好proto 文件 后，接下来是将其进行编译，编译后得到的结果是二进制，但一般不编译为二进制
+// 而是将proto中定义的数据结构和服务转换为各种语言对应的代码，方便在后续代码中直接使用这些数据结构
+// rust 语言中使用第三方的库来编译protobuf
+
+// message 定义类型，编译后一般转换为对应语言的struct 某种class类型
+message VotingRequest {
+  string url = 1;
+  enum Vote {
+    UP = 0;
+    DOWN = 1;
+  }
+
+  Vote vote = 2;
+}
+
+message VotingResponse {
+  string confirmation = 1;
+}

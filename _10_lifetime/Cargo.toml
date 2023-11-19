@@ -32,3 +32,4 @@ name = "strtok"
 path = "src/strtok.rs"
 
 [dependencies]
+log = "0.4.17"
