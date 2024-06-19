@@ -1,5 +1,4 @@
 use std::{panic, thread};
-use std::thread::panicking;
 
 fn main() {
     let origin_hook = panic::take_hook();
