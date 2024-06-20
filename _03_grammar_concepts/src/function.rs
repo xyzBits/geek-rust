@@ -21,11 +21,17 @@ fn pi() -> f64 {
     std::f64::consts::PI
 }
 
-fn not_pi() -> () {
-    std::f64::consts::PI;
-}
+fn not_pi() -> () {}
 
 
+/// 定义变量时，可以添加 mut 关键字让变量具备可变性
+/// 默认变量不可变，是一个很重要的特性，它符合最小权限原则
+/// 当你使用 mut 却没有修改变量时，会提示移除
+///
+/// 函数是一等公民，可以作为函数或者返回值
+///
+/// 函数内部如果提前返回，需要用 return 关键字，否则最后一个表达式就是其返回值
+/// 如果最后一个表达式都加了分号 ; 隐含其返回值为 unit
 fn main() {
     println!("apply square: {}", apply(2, square));
     println!("apply cube: {}", apply(2, cube));

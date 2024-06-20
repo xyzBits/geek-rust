@@ -13,4 +13,6 @@ fn main() {
 
     std::fs::write(output, md.as_bytes()).unwrap();
     println!("Converted markdown has been saved in {}", output);
+
+    // rust 代码大多都是表达式，if while for loop 都会返回一个值，函数最后一个表达式就是函数的返回值
 }
