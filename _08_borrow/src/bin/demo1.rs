@@ -28,7 +28,7 @@
 fn main() {
     let data = vec![1, 2, 3, 4];
 
-    let data1 = data;
+    let data1 = data.clone();
 
     println!("sum of data1: {}", sum(data) )
 }
