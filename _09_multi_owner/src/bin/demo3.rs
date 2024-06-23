@@ -47,4 +47,10 @@ fn main() {
     println!("{:?}", node1);
     println!("{:?}", node2);
 
+    let node5 = Node::new(5);
+
+    let node3 = node1.get_downstream().unwrap();
+
+    // node3.update_downstream(Rc::new(node5));
+
 }
