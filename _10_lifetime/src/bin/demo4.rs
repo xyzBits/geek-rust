@@ -22,6 +22,8 @@ fn main() {
 /// 它的生命周期是 'static
 /// 也可以指向 "hello world".to_string()
 /// 此时指针指向了这个字符串的地址，生命周期是 'a
+///
+/// strtok 并不想改变原有的字符串，只是改变指向这个字符串的可变引用
 /// 
 pub fn strtok<'b, 'a>(s: &'b mut &'a str, delimiter: char) -> &'a str {
     if let Some(i) = s.find(delimiter) {
