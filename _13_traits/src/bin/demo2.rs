@@ -29,4 +29,8 @@ impl MyParse for u8 {
 fn main() {
     let result = u8::parse("123abc");
     println!("{}", result);
+
+    let result = "234ddd0".parse::<u8>().unwrap_or(0);
+    println!("{}", result);
+
 }
