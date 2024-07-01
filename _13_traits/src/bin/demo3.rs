@@ -6,6 +6,8 @@ pub trait Parse {
     fn parse(s: &str) -> Self;
 }
 
+/// 通过对 带有约束的泛型参数实现 trait，一份代码就实现了 u32 f64 等类型的 parse trait
+/// 非常精简，不过，无法正确解析字符串时，我们返回了默认值，难道不是应该返回一个错误么
 impl<T> Parse for T
 where
     T: FromStr + Default,
@@ -26,7 +28,6 @@ where
             default()
         }
 
-        todo!()
     }
 }
 
