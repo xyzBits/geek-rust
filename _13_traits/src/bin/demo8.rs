@@ -93,9 +93,9 @@ pub fn format(input: &mut String, formatters: Vec<&dyn Formatter>) {
 
 // Clone cannot be make into an object
 // 如果 trait 的所有方法，返回值都是 Self，或者携带泛型的参数，那么这个 trait 就不能产生 trait object
-fn clone_test(input: Vec<Box<dyn Clone>>) {
-
-}
+// fn clone_test(input: Vec<Box<dyn Clone>>) {
+//
+// }
 
 
 fn main() {
