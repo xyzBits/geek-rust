@@ -1,3 +1,7 @@
+use std::cell::RefCell;
+use std::rc::Rc;
+use std::sync::{Arc, Mutex};
+use std::thread;
 
 /// Send / Sync
 /// 这两个 trait 都是 unsafe auto trait，
@@ -25,6 +29,82 @@
 /// 祼指针 *const / *mut T 它们是不安全的，所以既不是 Send 也不是 Sync
 /// UnsafeCell<T> 不支持Sync，也就是，任何使用了 Cell 或者 RefCell 的数据结构不支持 Sync
 /// 引用计数Rc 不支持 Send 也不支持 Sync ，所以 Rc无法跨线程
+///
+/// spawn 方法的参数是一个闭包，这个闭包需要 Send + 'static
+/// 'static 意思是闭包捕获的自由变量必须是一个拥有所有权的类型，或者是一个拥有静态生命周期的引用
+/// Send 意思 是，这些被捕获的自由变量的所有权可以从一个线程移动到另一个线程
+///
+/// 如果在线程间传递 Rc，是无法通过编译的，
+/// 因为 Rc 不支持 Send 和 Sync
+///
+
+fn rc_is_not_send_and_sync() {
+    let a = Rc::new(1);
+    let b = a.clone();
+    let c = b.clone();
+
+    // Rc<i32> cannot be sent between threads safely
+    // thread::spawn(move || {
+    //     println!("c = {}", c);
+    // });
+}
+
+
+/// RefCell 实现了 Send，但没有实现 Sync，所以，看起来是可以工作 的
+fn refcell_is_send() {
+    let a = RefCell::new(9);
+    thread::spawn(move || {
+        println!("{:?}", a);
+    });
+
+}
+
+/// Rc 不能Send，我们无法跨线程使用 Rc<RefCell<T>> 这样的数据结构 ，
+///那么使用 Send Sync 的 Arc 呢，
+///使用 Arc<RefCell<T>> 来获得，一个可以在多线程之间共享，
+///且可以修改的类型，可以么
+///
+/// 不可以，因为 Arc 内部的数据是共享的，需要支持 Sync 的数据结构，
+/// 但 RefCell 不是 Sync，编译失败，所以在多线程的情况下，
+/// 我们只能使用 支持 Sync Send 的 Arc
+/// 和 Mutex 一起，构造一个可以在多线程间共享且可以修改的类型
+fn refcell_is_not_sync() {
+    let a = Arc::new(RefCell::new(1));
+    let b = a.clone();
+    let c = a.clone();
+
+    // thread::spawn(move || {
+    //     println!("c = {:?}", c);
+    // });
+}
+
+
+fn arc_mutex_is_send_sync() {
+    let a = Arc::new(Mutex::new(1));
+    let b = a.clone();
+    let c = a.clone();
+
+    let handle = thread::spawn(move || {
+        let mut g = c.lock().unwrap();
+        *g += 2;
+    });
+
+    {
+        let mut g = b.lock().unwrap();
+        *g += 3;
+    }
+
+    handle.join().unwrap();
+
+    println!("a = {:?}", a);
+
+
+
+
+}
+
+#[allow(dead_code)]
 fn main() {
 
+    arc_mutex_is_send_sync();
 }
