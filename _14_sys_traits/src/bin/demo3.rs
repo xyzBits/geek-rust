@@ -1,3 +1,7 @@
+extern crate core;
+
+use core::slice;
+use std::fmt::{Debug, Formatter};
 
 /// Drop trait
 ///
@@ -52,13 +56,42 @@ impl From<Vec<u8>> for RawBuffer {
 ///
 /// the trait Copy cannot be implemented for this type,
 /// the type has a destructor
-impl Drop for RawBuffer {
-    #[inline]
-    fn drop(&mut self) {
-        todo!()
+// impl Drop for RawBuffer {
+//     #[inline]
+//     fn drop(&mut self) {
+//         todo!()
+//     }
+// }
+
+impl Debug for RawBuffer {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let data = self.as_ref();
+        write!(f, "{:p}: {:?}", self.ptr, data)
+    }
+}
+
+impl AsRef<[u8]> for RawBuffer {
+    fn as_ref(&self) -> &[u8] {
+        unsafe {
+            slice::from_raw_parts(self.ptr, self.len)
+        }
     }
 }
 
 fn main() {
+    let data = vec![1, 2, 3, 4];
 
+    let buf: RawBuffer = data.into();
+
+    use_buffer(buf);
+
+    println!("buf: {:?}", buf);
+}
+
+fn use_buffer(buf: RawBuffer) {
+    println!("buf to die: {:?}", buf);
+
+    // 这里不用特意drop，写出来 只是为了说明 copy 出来 的 buf 被  drop 掉了
+
+    drop(buf);
 }
