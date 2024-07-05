@@ -1,4 +1,3 @@
-
 /// 指针是一个持有内存地址的值，可以通过解引用来访问它指向的内存地址，
 /// 理论上可以解引用到任意数据类型，
 /// 引用是一个特殊的指针，它的解引用访问是受限的，
@@ -43,6 +42,40 @@
 /// 在堆上创建内存的 Box<T>
 /// 提供写时克隆的 Cow<'a, B>
 /// 以及用于数据加锁的 MutexGuard<T>
-fn main() {
+fn main() {}
 
+
+pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+    if m == 0 && n == 0 {
+        return;
+    }
+
+    // for i in 0..n {
+    //     nums1[(m + i) as usize] = nums2[i as usize];
+    // }
+    //
+    // nums1.sort();
+
+    let (mut p1, mut p2) = ((m - 1) as usize, (n - 1) as usize);
+    let mut tail = (m + n - 1) as usize;
+    let mut cur;
+
+    while p1 >= 0 || p2 >= 0 {
+        if p1 <= 0 {
+            cur = nums2[p2];
+            p2 -= 1;
+        } else if p2 <= 0 {
+            cur = nums1[p1];
+            p1 -= 1;
+        } else if nums1[p1] > nums2[p2] {
+            cur = nums1[p1];
+            p1 -= 1;
+        } else {
+            cur = nums2[p2];
+            p2 -= 1;
+        }
+
+        nums1[tail] = cur;
+        tail -= 1;
+    }
 }
