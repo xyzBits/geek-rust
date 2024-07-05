@@ -1,3 +1,4 @@
+use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 use std::path::PathBuf;
 
 /// 类型转换相关 trait
@@ -32,6 +33,20 @@ fn first() {
 /// 值类型到值用类型的转换 From<T> Into<T> TryFrom<T> TryInto<T>
 /// 引用类型到引用类型的转换 AsRef<T> AsMut<T>
 
+
+fn print_ip_addr(addr: impl Into<IpAddr>) {
+    println!("addr: {:?}", addr.into());
+}
+
 fn main() {
+
+    let v4: Ipv4Addr = "2.2.2.2".parse().unwrap();
+    let v6: Ipv6Addr = "::1".parse().unwrap();
+
+    print_ip_addr([1, 1, 1, 1]);
+    print_ip_addr([0xef80, 0, 0, 0, 0xaede, 0x48ff, 0xfe00, 0x1122]);
+
+    print_ip_addr(v4);
+    print_ip_addr(v6);
 
 }

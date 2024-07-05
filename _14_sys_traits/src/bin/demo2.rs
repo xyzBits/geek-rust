@@ -42,5 +42,16 @@ enum Language {
 }
 
 fn main() {
+    let mut hello = String::from("hello");
+
+    println!("{:p}", &hello);
+
+
+    // a.clone_from(&b)在功能上等同于 a = b.clone()，如果a已经存在的话，
+    // 使用 a.clone_from(&b) 可以重用a的内存，避免了重新进行内存分配，因此效率也高一些
+    let world = String::from("world");
+    hello.clone_from(&world);
+
+    println!("{:p}", &hello);
 
 }
