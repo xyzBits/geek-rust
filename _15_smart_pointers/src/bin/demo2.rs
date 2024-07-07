@@ -1,4 +1,4 @@
-use jemalloctor::Jemalloc;
+// use jemalloctor::Jemalloc;
 /// Box<T>
 /// Box 是 Rust 中最基本的在堆上分配内存的方式，
 /// 绝大多数其他包含堆内存的数据类型，内部都是通过 Box<T> 完成的，比如 Vec<T>
@@ -33,7 +33,7 @@ use jemalloctor::Jemalloc;
 ///
 ///
 
-static GLOBAL: Jemalloc = Jemalloc;
+// static GLOBAL: Jemalloc = Jemalloc;
 fn main() {
     let hello = String::from("hello");
     let len = hello.len();
