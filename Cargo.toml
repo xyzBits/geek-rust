@@ -27,12 +27,15 @@ members = [
     "_15_smart_pointers",
     "_16_data_structure",
     "_17_hash_table",
+    "_18_error_handling",
     "_19_closure",
     "_20_protobuf",
     "_21_kv_server",
-    "too_many_web_servers",
+    "_38_async",
+    "_39_async_internals",
     "_50_prost",
-    "_38_async", "_39_async_internals", "leetcode",
+    "leetcode",
+    "too_many_web_servers",
 ]
 
 #exclude = [
