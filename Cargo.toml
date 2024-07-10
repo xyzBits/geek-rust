@@ -32,7 +32,7 @@ members = [
     "_21_kv_server",
     "too_many_web_servers",
     "_50_prost",
-    "_38_async", "_39_async_internals",
+    "_38_async", "_39_async_internals", "leetcode",
 ]
 
 #exclude = [

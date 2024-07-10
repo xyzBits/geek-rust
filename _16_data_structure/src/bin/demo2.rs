@@ -1,13 +1,11 @@
 use std::fmt::Debug;
 
 fn main() {
-    let mut v = vec![1, 2, 3, 4];
-    let x: &[i32] = v.as_ref();
+    let  v = vec![1, 2, 3, 4];
 
-    let slice = &mut v[..2];
-    slice[0] = 200;
 
-    println!("{:?}", v);
+    // Vec 实现了 Deref， &Vec<T> 会自动被解引用为 &[T] 符合接口定义
+    print_slice(&v);
 
 
 
