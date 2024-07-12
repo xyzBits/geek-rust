@@ -70,4 +70,8 @@
 mod service;
 mod storage;
 mod pb;
+mod error;
+
 pub use pb::abi::*;
+pub use error::KvError;
+pub use storage::*;

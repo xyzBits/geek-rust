@@ -2,13 +2,15 @@ use async_prost::AsyncProstStream;
 use futures::{SinkExt, StreamExt};
 use tokio::net::TcpStream;
 use tracing::info;
-use tracing_subscriber::util::SubscriberInitExt;
 use kv::{CommandRequest, CommandResponse};
+use tracing_subscriber::{fmt, layer::SubscriberExt, util::SubscriberInitExt};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    tracing_subscriber::fmt::init();
-
+    // tracing_subscriber::fmt::init();
+    tracing_subscriber::registry()
+        .with(fmt::layer())
+        .init();
 
     let addr = "127.0.0.1:9527";
 
@@ -28,6 +30,7 @@ async fn main() -> anyhow::Result<()> {
     client.send(cmd).await?;
     if let Some(Ok(data)) = client.next().await {
         info!("Got response: {:?}", data);
+        // println!("Got response: {:?}", data);
     }
     Ok(())
 }
