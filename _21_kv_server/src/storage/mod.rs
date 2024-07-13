@@ -1,14 +1,14 @@
 mod memory;
+pub use memory::MemTable;
 
-use crate::{KvError, Kvpair};
-use crate::value::Value;
+use crate::{KvError, Kvpair, Value};
 
 /// 对于存储的抽象，我们不关心数据存在哪儿，但需要定义外界如何和存储打交道
 pub trait Storage {
 
     fn get(&self, table: &str, key: &str) -> Result<Option<Value>, KvError>;
 
-    fn set(&self, table: &str, key: &str, value: Value) -> Result<Option<Value>, KvError>;
+    fn set(&self, table: &str, key: String, value: Value) -> Result<Option<Value>, KvError>;
 
     fn contains(&self, table: &str, key: &str) -> Result<bool, KvError>;
 
@@ -20,29 +20,34 @@ pub trait Storage {
 
 }
 
+/// 这种写在实现之前的单元测试，是标准的 TDD
+/// 构建完 trait 后，写测试代码，
+/// 写测试代码是个验证接口是否好用的时机
+///
 #[cfg(test)]
 mod tests {
+    use crate::storage::memory::MemTable;
     use super::*;
 
     #[test]
-    fn memtable_basic_interface_should_work() {
+    fn mem_table_basic_interface_should_work() {
         let store = MemTable::new();
-        test_basi_interface(store);
+        test_basic_interface(store);
     }
 
     #[test]
-    fn memtable_get_all_should_work() {
+    fn mem_table_get_all_should_work() {
         let store = MemTable::new();
         test_get_all(store);
     }
 
     // #[test]
-    // fn memtable_iter_should_work() {
+    // fn mem_table_iter_should_work() {
     //     let store = MemTable::new();
     //     test_get_iter(store);
     // }
 
-    fn test_basi_interface(store: impl Storage) {
+    fn test_basic_interface(store: impl Storage) {
         // 第一次 set 会创建 table，插入 key 并返回 None（之前没值）
         let v = store.set("t1", "hello".into(), "world".into());
         assert!(v.unwrap().is_none());

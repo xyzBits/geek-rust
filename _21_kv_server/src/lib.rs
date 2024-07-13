@@ -48,11 +48,6 @@
 ///     目前打算支持 9 种命令，未来可能支持更多命令，所以最好 定义一个 trait 来统一处理所有的命令，返回处理结果
 ///     在处理命令的时候，需要和存储发生关系，这样才能根据请求中携带的参数读取数据，或者把请求中的数据存入存储系统 中，
 ///     所以 trait 可以这样定义
-/// ```Rust
-/// pub trait CommandService {
-///     fn execute(self, store: & impl Storage) -> CommandResponse;
-/// }
-/// ```
 ///
 ///     有了这个trait ，并且每一个命令都实现了这个trait 后，dispatch 方法就可以是类似这样的代码
 ///
@@ -71,6 +66,7 @@ mod service;
 mod storage;
 mod pb;
 mod error;
+
 
 pub use pb::abi::*;
 pub use error::KvError;
