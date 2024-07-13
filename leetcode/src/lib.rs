@@ -6,5 +6,6 @@ mod _2972_incremovable_subarray_count;
 mod _0011_max_area;
 mod _2974_minimum_number_game;
 mod _0015_three_sum;
+mod _3011_fin_if_array_can_be_sorted;
 
 struct Solution;
