@@ -11,5 +11,6 @@ mod _0042_trapping_rain_water;
 mod _0807_max_increase_keeping_skyline;
 mod _0003_longest_substring_without_repeating_characters;
 mod _0721_accounts_merge;
+mod _0438_find_all_anagrams_in_a_string;
 
 struct Solution;
