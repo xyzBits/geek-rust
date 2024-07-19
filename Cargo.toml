@@ -31,6 +31,7 @@ members = [
     "_19_closure",
     "_20_protobuf",
     "_21_kv_server",
+    "_23_advanced_generics",
     "_38_async",
     "_39_async_internals",
     "_50_prost",
