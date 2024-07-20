@@ -10,3 +10,4 @@ tokio-util = { version = "0.6", features = ["codec"] }
 anyhow = "1"
 bytes = "1"
 futures = "0.3"
+libp2p = { version = "0.39", features = ["tcp-tokio"] }
