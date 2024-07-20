@@ -19,7 +19,34 @@
 ///     其他线程或者协程只能通过给其他发消息的方式与之交互
 ///     也就 是channel
 ///
+///
+///  处理网络数据的一般方法
+///     如何处理网络数据，大部分时候，使用已有的应用层协议来处理网络数据，例如HTTP
+///     在 HTTP 协议下，基本上使用 JSON 构建  REST API / JSON API 是业界常识
+///     客户端和服务端也有足够好的生态来支持这样的处理，
+///     你只需要使用 serde 让你定义的 Rust 数据结构 具备 Serialize / Deserialize 的能力
+///     然后用 serde_json 生成序列化后的json数据
+#[macro_use]
+extern crate rocket;
 
-fn main() {
+use rocket::serde::{Deserialize, Serialize};
+use rocket::serde::json::Json;
 
+#[derive(Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+struct Hello {
+    name: String,
+}
+
+
+#[get("/", format = "json")]
+fn hello() -> Json<Hello> {
+    Json(Hello {
+        name: "bitch".into()
+    })
+}
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![hello])
 }
