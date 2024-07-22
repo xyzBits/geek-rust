@@ -51,9 +51,9 @@ async fn main() -> anyhow::Result<()> {
 
             for line in reader.next().await {
                 // 为每个消息创建一个 oneshot channel ，用于发送回复
-                let (reply, reply_receiver) = oneshot::channel();
+                let (replier, reply_receiver) = oneshot::channel();
 
-                sender1.send((line?, reply))?;
+                sender1.send((line?, replier))?;
 
                 // 接收 pow 计算完成后的 hash 和 nonce
                 if let Ok(v) = reply_receiver.await {
