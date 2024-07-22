@@ -1,7 +1,10 @@
 use std::future::Future;
 
 use futures::executor::block_on;
-
+/// async fn 的返回值，是一个 impl Future，
+/// 如果给一个普通函数返回 impl Future<Output> ，行为是否和 async fn 是一样的呢
+/// 两个是等价的，
+/// 二者都可以使用 await 来执行，也可以将其提供给一个 executor 来执行
 #[tokio::main]
 async fn main() {
     let name1 = "bitch".to_string();
